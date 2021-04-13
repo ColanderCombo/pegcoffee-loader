@@ -1,5 +1,6 @@
 import pegjs from 'pegjs';
 import loaderUtils from 'loader-utils';
+import coffee from 'pegjs-coffee-plugin';
 
 function extractAllowedStartRules(query) {
   if (typeof query.allowedStartRules === 'string') {
@@ -31,6 +32,7 @@ export default function loader(source) {
     optimize: optimizeParser,
     output: 'source',
     trace,
+    plugins: [coffee],
   };
   if (allowedStartRules.length > 0) {
     pegOptions.allowedStartRules = allowedStartRules;
